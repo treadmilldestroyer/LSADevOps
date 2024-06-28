@@ -1,5 +1,5 @@
 pipeline{
-    agents any
+    agent any
     environment{
         NEW_VERSION = ''
         SERVER_CREDENTIALS = ('')
