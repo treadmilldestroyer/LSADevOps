@@ -1,8 +1,7 @@
 pipeline{
     agent any
     environment{
-        NEW_VERSION = ''
-        SERVER_CREDENTIALS = ('')
+        NEW_VERSION = '1.2.3'
     }
     stages{
         stage("Build"){
