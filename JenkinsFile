@@ -1,26 +1,30 @@
 pipeline{
     agent any
-    environment{
-        NEW_VERSION = '1.2.3'
+    environment {
+        NEW_VERSION = '1.1.0'
+        SERVER_CREDENTIALS = credentials('server-credentials') 
     }
     stages{
-        stage("Build"){
+        stage("build") {
             steps{
-                echo "Building the application with version ${NEW_VERSION}"
+                echo "building the application"
+                echo "building version ${NEW_VERSION}"
             }
         }
-        
-        stage("Test"){
+        stage("test") {
             steps{
-                when{
-                    expression{ 
-                        BRANCH_NAME = 'master'
-                }
-                steps{
-                    echo "Testing the master branch"
+                echo "testing the application"   
+            }
+        }
+        stage("deploy") {
+            steps {
+                echo 'deploying the application'
+                withCredentials([
+                    usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVaraible: PWD)
+                ]) {
+                    sh "some script ${USER} ${PWD}"
                 }
             }
         }
     }
-}
 }
