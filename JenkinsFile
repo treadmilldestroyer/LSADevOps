@@ -19,12 +19,11 @@ pipeline{
         stage("deploy") {
             steps {
                 echo 'deploying the application'
-                withCredentials([
-                    usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVaraible: PWD)
-                ]) {
-                    sh "some script ${USER} ${PWD}"
-                }
             }
         }
     }
 }
+
+
+
+// You left off at minute 19:43
