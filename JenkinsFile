@@ -1,29 +1,20 @@
-pipeline{
+pipeline {
     agent any
-    environment {
-        NEW_VERSION = '1.1.0'
-        SERVER_CREDENTIALS = credentials('server-credentials') 
-    }
-    stages{
-        stage("build") {
-            steps{
-                echo "building the application"
-                echo "building version ${NEW_VERSION}"
-            }
-        }
-        stage("test") {
-            steps{
-                echo "testing the application"   
-            }
-        }
-        stage("deploy") {
+    stages {
+        stage('Checkout') {
             steps {
-                echo 'deploying the application'
+                git branch: 'main', url: 'https://github.com/darinpope/java-web-app.git'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying"
             }
         }
     }
 }
-
-
-
-// You left off at minute 19:43
