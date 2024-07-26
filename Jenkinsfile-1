@@ -10,12 +10,12 @@ stage('TagPush_Build') {
             git describe --tags
             py_version=\$(make python_version) 2>/dev/null || :
             echo \${py_version}
-        if [[ \${py_version} =~ python3.6 ]]
+        if [[ \${py_version} =~ python3.11 ]]   
         then
                 export LD_LIBRARY_PATH=/usr/local/lib:\${LD_LIBRARY_PATH}
                 export PATH=$PATH:/usr/edb/as9.6/bin/
                 set +e
-                source scl_source enable rh-python36
+                source scl_source enable rh-python311
                 set -e
                 make rpm
                 curl -u jenkins:AP9uP2N9YEW9ujiw9K9Tazk2GPk -k -T
