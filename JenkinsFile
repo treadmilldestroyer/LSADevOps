@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        label 'test' 
+    }
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/master']],
+                    extensions: [[$class: 'CleanBeforeCheckout']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/treadmilldestroyer/LSADevOps.git'
+                        ]]
+                    ])
+            }
+            
+        }
+        stage('Build RPM') {
+            steps {
+                sh 'make rpm'
+            }
+        }
+    }
+}

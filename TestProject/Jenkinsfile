@@ -1,0 +1,37 @@
+// This is a test Jenkinsfile
+
+pipeline {
+    agent {
+        label: any  // You would replace 'any' with the name of your agent
+    }
+    environment {
+        // Here you can put any environment variables you need to set
+    }
+    stages {
+        stage('Checkoout') {
+            steps {
+                // This is where you checkout the code from your repo
+            }
+        }
+        stage('Build') {
+            steps {
+                // This is where you build or "run" the job 
+            }
+        }
+        stage('Test') {
+            steps {
+                // This is where you test the job
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // This is where you deploy the job
+            }
+        }
+    }
+    post {
+        always {
+            // You would put any post-build actions here
+        }
+    }
+}
